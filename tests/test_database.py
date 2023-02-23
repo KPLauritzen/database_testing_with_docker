@@ -2,7 +2,6 @@ from sqlalchemy import select
 import pytest
 
 
-
 @pytest.mark.usefixtures("filled_db")
 def test_filled_db(db_session):
     from docker_test.schema import Dog
@@ -15,6 +14,7 @@ def test_filled_db(db_session):
     assert len(dogs) == 1
     fido = dogs[0]
     assert fido.name == "Fido"
+
 
 @pytest.mark.usefixtures("filled_db")
 def test_filled_db_two(db_session):

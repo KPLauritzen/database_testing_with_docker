@@ -1,7 +1,7 @@
 from logging.config import fileConfig
+from docker_test.schema import Dog
+from docker_test.db import get_engine
 
-from sqlalchemy import engine_from_config
-from sqlalchemy import pool
 
 from alembic import context
 
@@ -18,15 +18,14 @@ if config.config_file_name is not None:
 # for 'autogenerate' support
 # from myapp import mymodel
 # target_metadata = mymodel.Base.metadata
-from docker_test.schema import Dog
+
 target_metadata = Dog.metadata
 
 # other values from the config, defined by the needs of env.py,
 # can be acquired:
 # my_important_option = config.get_main_option("my_important_option")
 # ... etc.
-from docker_test.config import config as app_config
-from docker_test.db import get_engine
+
 
 def run_migrations_online() -> None:
     """Run migrations in 'online' mode.
@@ -38,13 +37,10 @@ def run_migrations_online() -> None:
     connectable = get_engine()
 
     with connectable.connect() as connection:
-        context.configure(
-            connection=connection, target_metadata=target_metadata
-        )
+        context.configure(connection=connection, target_metadata=target_metadata)
 
         with context.begin_transaction():
             context.run_migrations()
-
 
 
 run_migrations_online()

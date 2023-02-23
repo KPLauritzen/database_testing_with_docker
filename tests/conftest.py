@@ -4,6 +4,7 @@ import os
 import time
 from sqlalchemy.orm import sessionmaker
 
+
 @pytest.fixture(scope="session")
 def empty_db():
     from docker_test.config import config
@@ -29,7 +30,7 @@ def empty_db():
 
     # Apply migrations
     os.system("alembic upgrade head")
-    
+
     yield
 
     container.stop()
@@ -47,10 +48,6 @@ def filled_db(empty_db, db_session):
         session.commit()
     yield
 
-
-
-
-    
 
 @pytest.fixture(scope="session")
 def db_session():
