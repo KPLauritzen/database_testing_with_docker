@@ -1,0 +1,31 @@
+[tool.poetry]
+name = "docker-test"
+version = "0.1.0"
+description = ""
+authors = ["Kasper Primdal Lauritzen <klaur@dfds.com>"]
+readme = "README.md"
+packages = [{include = "docker_test"}]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+docker = "^6.0.0"
+pytest = "~7"
+alembic = "^1.9.3"
+psycopg2 = "^2.9.2"
+sqlalchemy = "~2.0"
+pydantic = "^1.10.5"
+pytest-env = "^0.8.1"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.pytest.ini_options]
+env = [
+    "DB_USER=postgres",
+    "DB_PASSWORD=postgres",
+    "DB_HOST=localhost",
+    "DB_PORT=5432",
+    "DB_NAME=postgres",
+]
